@@ -1,0 +1,39 @@
+name: oneshot_journal
+description: An anonymous private journaling app with an opt-in, server-moderated exchange.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Backend
+  supabase_flutter: ^2.8.0
+  # State management
+  flutter_riverpod: ^2.6.1
+  # Navigation
+  go_router: ^14.6.2
+  # Paywall / IAP
+  purchases_flutter: ^8.4.0
+  # UI
+  google_fonts: ^6.2.1
+  cupertino_icons: ^1.0.8
+  # Utilities
+  shared_preferences: ^2.3.3
+  url_launcher: ^6.3.1
+  # Analytics (optional; no-op without keys)
+  posthog_flutter: ^4.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/legal/

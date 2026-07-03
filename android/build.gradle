@@ -1,0 +1,24 @@
+// Root project build file — Flutter 3.24 template style.
+//
+// With the settings.gradle plugins {} block owning plugin versions, this file
+// stays minimal: shared repositories for all subprojects and a clean task.
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// Standard Flutter template layout: put build output in a shared ../build dir.
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

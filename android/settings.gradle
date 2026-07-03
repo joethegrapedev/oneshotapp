@@ -1,0 +1,39 @@
+// Flutter 3.24 Android template — settings.gradle (Groovy DSL, embedding v2).
+//
+// Resolves the Flutter SDK path from local.properties, loads the Flutter tools
+// Gradle build so the `dev.flutter.flutter-gradle-plugin` is on the classpath,
+// then declares plugin versions for the whole project. Actual plugins are
+// *applied* in the module build.gradle files (plugins { ... } blocks).
+
+pluginManagement {
+    def flutterSdkPath = {
+        def properties = new Properties()
+        def localPropertiesFile = file("local.properties")
+        assert localPropertiesFile.exists(),
+                "local.properties not found. Run `flutter pub get` (or `flutter build`) once " +
+                "to generate it, or copy local.properties.example and set flutter.sdk."
+        localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+        def flutterSdkPath = properties.getProperty("flutter.sdk")
+        assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+        return flutterSdkPath
+    }()
+
+    // Load the Flutter tools Gradle build (provides dev.flutter.flutter-gradle-plugin).
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+    id "com.android.application" version "8.7.3" apply false
+    id "org.jetbrains.kotlin.android" version "1.9.24" apply false
+    // The Flutter Gradle plugin itself; applied (with `apply false` here) in app/build.gradle.
+    id "dev.flutter.flutter-gradle-plugin" version "1.0.0" apply false
+}
+
+include ":app"
