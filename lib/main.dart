@@ -12,7 +12,9 @@ Future<void> main() async {
   if (Env.isSupabaseConfigured) {
     await Supabase.initialize(
       url: Env.supabaseUrl,
-      anonKey: Env.supabaseAnonKey,
+      // Accepts either a legacy anon key or a new publishable key — both are
+      // the public client key (never a secret).
+      publishableKey: Env.supabaseAnonKey,
     );
   } else {
     // Fail loudly in debug; in release the app can't function without backend.

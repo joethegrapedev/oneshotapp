@@ -60,12 +60,11 @@ class RevenueCatPurchasesService implements PurchasesService {
   Future<bool> purchase(Package package) async {
     if (!_configured) return false;
     try {
-      final result = await Purchases.purchasePackage(package);
-      return result.customerInfo.entitlements.active
-          .containsKey(Env.entitlementId);
-    } on PurchasesErrorCode {
-      return false;
+      // purchases_flutter 8.x returns CustomerInfo directly from purchasePackage.
+      final info = await Purchases.purchasePackage(package);
+      return info.entitlements.active.containsKey(Env.entitlementId);
     } catch (_) {
+      // Includes user cancellation (PlatformException) — treat as "not entitled".
       return false;
     }
   }

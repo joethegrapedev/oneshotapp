@@ -95,7 +95,7 @@ class _DoodlePainter extends CustomPainter {
             j(0.84, 0.30),
             j(0.84, 0.74),
             j(0.16, 0.74),
-          ], close: true),
+          ], close: true,),
           paint,
         );
         canvas.drawPath(
@@ -131,7 +131,7 @@ class _DoodlePainter extends CustomPainter {
             j(0.84, 0.42),
             j(0.84, 0.74),
             j(0.16, 0.74),
-          ], close: true),
+          ], close: true,),
           paint,
         );
         break;
@@ -145,7 +145,7 @@ class _DoodlePainter extends CustomPainter {
             j(0.72, 0.26),
             j(0.80, 0.48),
             j(0.50, 0.78),
-          ], close: true),
+          ], close: true,),
           paint,
         );
         break;

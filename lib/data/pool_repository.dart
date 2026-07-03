@@ -41,17 +41,22 @@ class SupabasePoolRepository implements PoolRepository {
 
   @override
   Future<void> report(String entryId, String reason) async {
-    await _client.rpc('apply_report', params: {
-      'p_entry_id': entryId,
-      'p_reason': reason,
-    });
+    await _client.rpc(
+      'apply_report',
+      params: {
+        'p_entry_id': entryId,
+        'p_reason': reason,
+      },
+    );
   }
 
   @override
   Future<void> block(String authorId) async {
-    await _client.from('blocks').upsert({
-      'blocker_id': _uid,
-      'blocked_id': authorId,
-    });
+    await _client.from('blocks').upsert(
+      {
+        'blocker_id': _uid,
+        'blocked_id': authorId,
+      },
+    );
   }
 }

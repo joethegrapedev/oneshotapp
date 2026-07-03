@@ -109,7 +109,7 @@ class _HandBorderPainter extends CustomPainter {
     if (fill != null) {
       canvas.drawRRect(rrect, Paint()..color = fill!);
     }
-    if (stroke.alpha != 0) {
+    if (stroke.a > 0) {
       // Slightly wobble the border for a hand-drawn feel.
       final rnd = math.Random(size.width.round());
       final path = Path();

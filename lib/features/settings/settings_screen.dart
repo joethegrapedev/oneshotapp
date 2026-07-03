@@ -171,14 +171,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _SectionHeader('Blocked writers'),
+          const _SectionHeader('Blocked writers'),
           _BlockedList(
             loading: _loadingBlocks,
             blockedIds: _blockedIds,
             onUnblock: _working ? null : _unblock,
           ),
           const SizedBox(height: AppSpace.xl),
-          _SectionHeader('Support'),
+          const _SectionHeader('Support'),
           _Tile(
             icon: Icons.mail_outline,
             title: 'Contact support',
@@ -186,14 +186,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             onTap: _emailSupport,
           ),
           const SizedBox(height: AppSpace.xl),
-          _SectionHeader('Subscription'),
+          const _SectionHeader('Subscription'),
           HandButton(
             label: 'Restore Purchases',
             variant: HandButtonVariant.outline,
             onPressed: _working ? null : _restore,
           ),
           const SizedBox(height: AppSpace.xl),
-          _SectionHeader('Legal'),
+          const _SectionHeader('Legal'),
           _Tile(
             icon: Icons.description_outlined,
             title: 'Terms of Use',
@@ -205,7 +205,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             onTap: () => _openUrl(Uri.parse(Env.privacyUrl)),
           ),
           const SizedBox(height: AppSpace.xl),
-          _SectionHeader('Account'),
+          const _SectionHeader('Account'),
           Text(
             'Deleting your account permanently purges your entries, including '
             'anything you shared.',
@@ -270,8 +270,11 @@ class _BlockedList extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: AppSpace.sm),
             child: Row(
               children: [
-                const Icon(Icons.person_off_outlined,
-                    color: AppColors.inkSoft, size: 22),
+                const Icon(
+                  Icons.person_off_outlined,
+                  color: AppColors.inkSoft,
+                  size: 22,
+                ),
                 const SizedBox(width: AppSpace.md),
                 Expanded(
                   child: Text('Blocked writer', style: text.titleMedium),

@@ -39,9 +39,9 @@ class ModerationOutcome {
   factory ModerationOutcome.fromJson(Map<String, dynamic> json) {
     final crisis = json['crisis'] as Map<String, dynamic>?;
     final resources = (crisis?['resources'] as List?)
-            ?.map((e) => CrisisResource.fromJson(
-                  (e as Map).cast<String, dynamic>(),
-                ))
+            ?.map(
+              (e) => CrisisResource.fromJson((e as Map).cast<String, dynamic>()),
+            )
             .toList() ??
         const <CrisisResource>[];
 
