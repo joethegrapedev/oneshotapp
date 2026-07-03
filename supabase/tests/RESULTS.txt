@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: clean text -> clean + shareable
+ok 1 - clean text -> clean + shareable
+  ---
+  duration_ms: 1.895689
+  type: 'test'
+  ...
+# Subtest: empty string equivalent (all-zero scores) -> clean
+ok 2 - empty string equivalent (all-zero scores) -> clean
+  ---
+  duration_ms: 0.299208
+  type: 'test'
+  ...
+# Subtest: self-harm phrasing (flag) -> held_selfharm, not shareable
+ok 3 - self-harm phrasing (flag) -> held_selfharm, not shareable
+  ---
+  duration_ms: 0.277213
+  type: 'test'
+  ...
+# Subtest: self-harm by score at threshold -> held_selfharm
+ok 4 - self-harm by score at threshold -> held_selfharm
+  ---
+  duration_ms: 0.241028
+  type: 'test'
+  ...
+# Subtest: self-harm/intent and self-harm/instructions each -> held_selfharm
+ok 5 - self-harm/intent and self-harm/instructions each -> held_selfharm
+  ---
+  duration_ms: 0.493295
+  type: 'test'
+  ...
+# Subtest: PRECEDENCE: self-harm chosen even when objectionable also present
+ok 6 - PRECEDENCE: self-harm chosen even when objectionable also present
+  ---
+  duration_ms: 0.283086
+  type: 'test'
+  ...
+# Subtest: sexual/minors ALWAYS hard-reject, even if self-harm also present
+ok 7 - sexual/minors ALWAYS hard-reject, even if self-harm also present
+  ---
+  duration_ms: 0.406435
+  type: 'test'
+  ...
+# Subtest: sexual/minors by score threshold -> rejected
+ok 8 - sexual/minors by score threshold -> rejected
+  ---
+  duration_ms: 0.236554
+  type: 'test'
+  ...
+# Subtest: generic sexual above threshold -> rejected_objectionable
+ok 9 - generic sexual above threshold -> rejected_objectionable
+  ---
+  duration_ms: 3.336277
+  type: 'test'
+  ...
+# Subtest: violence/graphic above threshold -> rejected_objectionable
+ok 10 - violence/graphic above threshold -> rejected_objectionable
+  ---
+  duration_ms: 0.688274
+  type: 'test'
+  ...
+# Subtest: harassment / hate / illicit above threshold -> rejected_objectionable
+ok 11 - harassment / hate / illicit above threshold -> rejected_objectionable
+  ---
+  duration_ms: 0.382292
+  type: 'test'
+  ...
+# Subtest: borderline JUST BELOW threshold -> clean
+ok 12 - borderline JUST BELOW threshold -> clean
+  ---
+  duration_ms: 0.178647
+  type: 'test'
+  ...
+# Subtest: PII present but otherwise clean -> held_pii, not shareable
+ok 13 - PII present but otherwise clean -> held_pii, not shareable
+  ---
+  duration_ms: 0.086578
+  type: 'test'
+  ...
+# Subtest: objectionable outranks PII (order: objectionable before pii)
+ok 14 - objectionable outranks PII (order: objectionable before pii)
+  ---
+  duration_ms: 0.052516
+  type: 'test'
+  ...
+# Subtest: self-harm outranks PII
+ok 15 - self-harm outranks PII
+  ---
+  duration_ms: 0.043156
+  type: 'test'
+  ...
+# Subtest: detects a plain email
+ok 16 - detects a plain email
+  ---
+  duration_ms: 2.106865
+  type: 'test'
+  ...
+# Subtest: detects email with + tag
+ok 17 - detects email with + tag
+  ---
+  duration_ms: 0.437981
+  type: 'test'
+  ...
+# Subtest: detects +65 spaced mobile
+ok 18 - detects +65 spaced mobile
+  ---
+  duration_ms: 0.235271
+  type: 'test'
+  ...
+# Subtest: detects bare 8-digit SG mobile
+ok 19 - detects bare 8-digit SG mobile
+  ---
+  duration_ms: 0.212939
+  type: 'test'
+  ...
+# Subtest: detects dash-separated SG number
+ok 20 - detects dash-separated SG number
+  ---
+  duration_ms: 0.200745
+  type: 'test'
+  ...
+# Subtest: detects SG landline starting with 6
+ok 21 - detects SG landline starting with 6
+  ---
+  duration_ms: 0.208352
+  type: 'test'
+  ...
+# Subtest: detects a general international number
+ok 22 - detects a general international number
+  ---
+  duration_ms: 0.165495
+  type: 'test'
+  ...
+# Subtest: detects full name + Blk address
+ok 23 - detects full name + Blk address
+  ---
+  duration_ms: 0.469897
+  type: 'test'
+  ...
+# Subtest: detects name + unit number
+ok 24 - detects name + unit number
+  ---
+  duration_ms: 0.715304
+  type: 'test'
+  ...
+# Subtest: detects name + street keyword
+ok 25 - detects name + street keyword
+  ---
+  duration_ms: 1.148308
+  type: 'test'
+  ...
+# Subtest: plain feelings text is NOT flagged
+ok 26 - plain feelings text is NOT flagged
+  ---
+  duration_ms: 1.596748
+  type: 'test'
+  ...
+# Subtest: single first name mention is NOT flagged
+ok 27 - single first name mention is NOT flagged
+  ---
+  duration_ms: 5.001878
+  type: 'test'
+  ...
+# Subtest: a full name WITHOUT any locator is NOT flagged
+ok 28 - a full name WITHOUT any locator is NOT flagged
+  ---
+  duration_ms: 0.600856
+  type: 'test'
+  ...
+# Subtest: a year-like 8-digit number is NOT a phone (starts with 2)
+ok 29 - a year-like 8-digit number is NOT a phone (starts with 2)
+  ---
+  duration_ms: 0.11428
+  type: 'test'
+  ...
+# Subtest: empty string -> no pii
+ok 30 - empty string -> no pii
+  ---
+  duration_ms: 0.107226
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 380.49915

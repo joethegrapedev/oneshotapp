@@ -1,0 +1,6 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The INTERNET permission is required for profile builds so the Flutter
+         tool can communicate with the running application (DevTools / profiling).
+         This is a profile-only manifest and is not merged into release builds. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- AppColors.paper (#FBF7F0) — warm off-white used for the launch splash. -->
+    <color name="launch_background">#FBF7F0</color>
+    <!-- Adaptive launcher icon background (AppColors.paper). -->
+    <color name="ic_launcher_background">#FBF7F0</color>
+</resources>

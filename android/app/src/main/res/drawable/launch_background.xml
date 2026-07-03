@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Flutter launch screen. Solid paper-colored (#FBF7F0) background matching
+     AppColors.paper so the cold-start splash blends into the app's first frame.
+     Add a centered <item> with a bitmap here if a splash logo is desired. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/launch_background" />
+</layer-list>

@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The INTERNET permission is required for development so that the Flutter
+         tool can communicate with the running application (hot reload, DevTools,
+         Observatory). This is a debug-only manifest and is not merged into
+         release builds. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
