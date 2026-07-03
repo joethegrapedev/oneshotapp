@@ -27,7 +27,7 @@ class _ReadBackScreenState extends ConsumerState<ReadBackScreen> {
   @override
   void initState() {
     super.initState();
-    _serveNext();
+    _served = ref.read(poolRepositoryProvider).serveOne();
   }
 
   void _serveNext() {
@@ -77,13 +77,17 @@ class _ReadBackScreenState extends ConsumerState<ReadBackScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel',
-                style: TextStyle(color: AppColors.inkSoft)),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: AppColors.inkSoft),
+            ),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Block',
-                style: TextStyle(color: AppColors.danger)),
+            child: const Text(
+              'Block',
+              style: TextStyle(color: AppColors.danger),
+            ),
           ),
         ],
       ),
@@ -195,10 +199,13 @@ class _EntryView extends StatelessWidget {
                   const SizedBox(height: AppSpace.md),
                   Text(entry.body, style: AppTypography.writing()),
                   const SizedBox(height: AppSpace.md),
-                  Row(
-                    children: const [
-                      Icon(Icons.person_outline,
-                          size: 14, color: AppColors.inkSoft),
+                  const Row(
+                    children: [
+                      Icon(
+                        Icons.person_outline,
+                        size: 14,
+                        color: AppColors.inkSoft,
+                      ),
                       SizedBox(width: AppSpace.xs),
                       Text(
                         'From someone, anonymously',
@@ -310,8 +317,10 @@ class _ReportReasonSheet extends StatelessWidget {
                   reason,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                trailing: const Icon(Icons.chevron_right,
-                    color: AppColors.inkSoft),
+                trailing: const Icon(
+                  Icons.chevron_right,
+                  color: AppColors.inkSoft,
+                ),
                 onTap: () => Navigator.of(context).pop(reason),
               ),
           ],
@@ -341,7 +350,7 @@ class _ColdStart extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              DoodleIcon(Doodle.moon, size: 96, color: AppColors.accent),
+              const DoodleIcon(Doodle.moon, size: 96, color: AppColors.accent),
               const SizedBox(height: AppSpace.lg),
               Text(
                 message,

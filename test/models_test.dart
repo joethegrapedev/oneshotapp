@@ -82,8 +82,11 @@ void main() {
       });
 
       final insert = entry.toInsertJson();
-      expect(insert.containsKey('is_shareable'), isFalse,
-          reason: 'client must never assert pool eligibility');
+      expect(
+        insert.containsKey('is_shareable'),
+        isFalse,
+        reason: 'client must never assert pool eligibility',
+      );
       expect(insert['body'], 'draft');
       expect(insert['visibility'], 'shared');
       expect(insert['moderation_status'], 'pending');
@@ -111,12 +114,16 @@ void main() {
       expect(ModerationStatus.fromDb('private'), ModerationStatus.private);
       expect(ModerationStatus.fromDb('pending'), ModerationStatus.pending);
       expect(ModerationStatus.fromDb('clean'), ModerationStatus.clean);
-      expect(ModerationStatus.fromDb('held_selfharm'),
-          ModerationStatus.heldSelfharm);
+      expect(
+        ModerationStatus.fromDb('held_selfharm'),
+        ModerationStatus.heldSelfharm,
+      );
       expect(ModerationStatus.fromDb('held_pii'), ModerationStatus.heldPii);
       expect(ModerationStatus.fromDb('rejected'), ModerationStatus.rejected);
-      expect(ModerationStatus.fromDb('rejected_objectionable'),
-          ModerationStatus.rejectedObjectionable);
+      expect(
+        ModerationStatus.fromDb('rejected_objectionable'),
+        ModerationStatus.rejectedObjectionable,
+      );
       expect(ModerationStatus.fromDb('removed'), ModerationStatus.removed);
     });
 
@@ -127,8 +134,11 @@ void main() {
 
     test('db + fromDb round-trip for every status', () {
       for (final status in ModerationStatus.values) {
-        expect(ModerationStatus.fromDb(status.db), status,
-            reason: 'round-trip failed for $status');
+        expect(
+          ModerationStatus.fromDb(status.db),
+          status,
+          reason: 'round-trip failed for $status',
+        );
       }
     });
   });
@@ -176,8 +186,10 @@ void main() {
       expect(outcome.isSelfHarm, isTrue);
       expect(outcome.isShareable, isFalse);
       expect(outcome.crisisResources, hasLength(2));
-      expect(outcome.crisisResources.first.name,
-          'Samaritans of Singapore (SOS)');
+      expect(
+        outcome.crisisResources.first.name,
+        'Samaritans of Singapore (SOS)',
+      );
       expect(outcome.crisisResources.first.contact, '1767');
       expect(outcome.crisisResources.first.hours, '24h');
       expect(outcome.crisisResources.first.note, 'verify at build time');

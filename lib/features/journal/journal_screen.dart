@@ -28,7 +28,8 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
   @override
   void initState() {
     super.initState();
-    _reload();
+    _entriesFuture =
+        ref.read(entriesRepositoryProvider).myEntries(search: _query);
   }
 
   @override
@@ -155,7 +156,7 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                     );
                   }
                   if (snapshot.hasError) {
-                    return _MessageState(
+                    return const _MessageState(
                       doodle: Doodle.folder,
                       message:
                           "Couldn't load your journal. Pull down to try again.",

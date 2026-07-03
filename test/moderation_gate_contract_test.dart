@@ -56,8 +56,11 @@ void main() {
 
       expect(outcome.isSelfHarm, isTrue);
       expect(outcome.isShareable, isFalse);
-      expect(outcome.crisisResources, isNotEmpty,
-          reason: 'self-harm must route to crisis resources');
+      expect(
+        outcome.crisisResources,
+        isNotEmpty,
+        reason: 'self-harm must route to crisis resources',
+      );
     });
 
     test('rejected → isShareable false', () async {

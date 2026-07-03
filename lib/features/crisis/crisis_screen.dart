@@ -78,8 +78,10 @@ class CrisisScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Okay',
-                style: TextStyle(color: AppColors.accent)),
+            child: const Text(
+              'Okay',
+              style: TextStyle(color: AppColors.accent),
+            ),
           ),
         ],
       ),
@@ -96,7 +98,7 @@ class CrisisScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: AppSpace.lg),
-          Center(
+          const Center(
             child: DoodleIcon(Doodle.heart, size: 96, color: AppColors.accent),
           ),
           const SizedBox(height: AppSpace.lg),
