@@ -1,0 +1,11 @@
+# Example local.properties — COPY to android/local.properties (git-ignored).
+#
+# local.properties is machine-specific and MUST NOT be committed. Flutter
+# regenerates it on `flutter pub get` / `flutter build`; this example just
+# documents the shape.
+#
+# sdk.dir      = absolute path to your Android SDK
+# flutter.sdk  = absolute path to your Flutter SDK checkout
+#
+sdk.dir=/absolute/path/to/Android/sdk
+flutter.sdk=/absolute/path/to/flutter

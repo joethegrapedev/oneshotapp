@@ -1,0 +1,13 @@
+# Example key.properties — COPY to android/key.properties (git-ignored) for
+# release builds. This holds your Play *upload* key. With Play App Signing,
+# Google manages the real app signing key; you only ever sign uploads.
+#
+# Generate an upload keystore once:
+#   keytool -genkey -v -keystore upload-keystore.jks -keyalg RSA \
+#     -keysize 2048 -validity 10000 -alias upload
+#
+# NEVER commit the real key.properties or the .jks file.
+storeFile=/absolute/path/to/upload-keystore.jks
+storePassword=your-store-password
+keyAlias=upload
+keyPassword=your-key-password
