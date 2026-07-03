@@ -83,8 +83,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           .eq('blocked_id', blockedId);
       if (!mounted) return;
       setState(() {
-        _blockedIds =
-            _blockedIds.where((id) => id != blockedId).toList();
+        _blockedIds = _blockedIds.where((id) => id != blockedId).toList();
       });
       _snack('Unblocked');
     } catch (_) {
@@ -323,8 +322,7 @@ class _Tile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title, style: text.titleMedium),
-                  if (subtitle != null)
-                    Text(subtitle!, style: text.bodySmall),
+                  if (subtitle != null) Text(subtitle!, style: text.bodySmall),
                 ],
               ),
             ),

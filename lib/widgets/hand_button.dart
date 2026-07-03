@@ -55,10 +55,8 @@ class HandButton extends StatelessWidget {
             child: Text(
               label,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(color: fg),
+              style:
+                  Theme.of(context).textTheme.labelLarge?.copyWith(color: fg),
             ),
           ),
         ],

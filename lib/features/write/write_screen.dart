@@ -138,6 +138,15 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
       case GateStatus.rejected:
       case GateStatus.rejectedObjectionable:
         await _showRejectedDialog(outcome.message);
+      case GateStatus.pending:
+        // Transient provider failure: saved privately, not shared. Let them retry.
+        await _showNoticeDialog(
+          "We couldn't check this right now",
+          outcome.message.isEmpty
+              ? 'Your entry was saved privately and not shared. Please try '
+                  'sharing again later.'
+              : outcome.message,
+        );
     }
   }
 
@@ -174,18 +183,24 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
   }
 
   Future<void> _showRejectedDialog(String message) async {
+    await _showNoticeDialog(
+      "This can't be shared",
+      message.isEmpty
+          ? 'This entry cannot be shared, but it has been saved privately '
+              'for you.'
+          : message,
+    );
+  }
+
+  /// Shows a single-action notice, then returns to the journal.
+  Future<void> _showNoticeDialog(String title, String body) async {
     if (!mounted) return;
     await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: AppColors.paper,
-        title: const Text("This can't be shared"),
-        content: Text(
-          message.isEmpty
-              ? 'This entry cannot be shared, but it has been saved privately '
-                  'for you.'
-              : message,
-        ),
+        title: Text(title),
+        content: Text(body),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),

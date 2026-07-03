@@ -1,0 +1,21 @@
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:22: NOTICE:  PASS [count=2] handle_new_user created a profile per auth user
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:73: NOTICE:  PASS [blocked as expected] client cannot set is_shareable=true on own entry
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:78: NOTICE:  PASS [blocked as expected] client cannot set moderation_status=clean
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:83: NOTICE:  PASS [blocked as expected] client cannot insert is_shareable=true: new row violates row-level security policy for table "entries"
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:88: NOTICE:  PASS [blocked as expected] client cannot insert moderation_status=clean: new row violates row-level security policy for table "entries"
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:94: NOTICE:  PASS [count=1] u1 sees only its own entries, never the pool
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:97: NOTICE:  PASS [count=0] u1 cannot directly read a pooled entry
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:102: NOTICE:  PASS [count=0] client cannot read moderation_log
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:107: NOTICE:  PASS [blocked as expected] client cannot self-unsuspend/suspend
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:112: NOTICE:  PASS [blocked as expected] client cannot forge a matches row: new row violates row-level security policy for table "matches"
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:118: NOTICE:  PASS [count=1] serve_entry returns one eligible entry
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:121: NOTICE:  PASS [count=0] serve_entry does not re-serve an already-matched entry
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:127: NOTICE:  PASS [count=1] u1 can read the entry served to it
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:130: NOTICE:  PASS [count=0] held_selfharm and rejected entries are never visible to u1
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:139: NOTICE:  PASS [count=1] apply_report pulled the entry from the pool
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:153: NOTICE:  PASS [count=0] serve_entry never serves a blocked author
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:168: NOTICE:  PASS [count=0] serve_entry never serves a suspended author
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:180: NOTICE:  PASS [count=0] delete_my_account purged the caller's entries
+psql:/home/user/oneshotapp/supabase/tests/pg_harness/02_rls_tests.sql:183: NOTICE:  PASS [count=0] delete_my_account purged the caller's profile
+ALL RLS / GATE SECURITY TESTS PASSED
+RUNNER: all security tests passed (exit 0)

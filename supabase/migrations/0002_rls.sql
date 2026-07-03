@@ -18,27 +18,39 @@ language plpgsql
 stable
 as $$
 declare
-  claims text;
   claim_role text;
 begin
-  -- auth.role() is the canonical Supabase helper; use it first.
+  -- PRIMARY, most reliable signal: the effective Postgres role.
+  -- PostgREST runs genuine client requests as 'authenticated' or 'anon'
+  -- (via SET LOCAL ROLE). Our trusted SECURITY DEFINER functions
+  -- (serve_entry, apply_report, resolve_report, delete_my_account) run as their
+  -- OWNER while the guard trigger fires, so current_user becomes the owner
+  -- (postgres / supabase_admin) — NOT a client role. The service_role key is
+  -- likewise not a client role. So: anything that is not a client role is a
+  -- trusted server/definer/admin path.
+  --
+  -- This is what makes optimistic takedown work: apply_report() (a definer
+  -- function) can set is_shareable/moderation_status even though the *caller's*
+  -- JWT is only 'authenticated'. A real client UPDATE still runs as
+  -- 'authenticated'/'anon' and stays guarded.
+  if current_user not in ('authenticated', 'anon') then
+    return true;
+  end if;
+
+  -- Secondary safety net: honor an explicit service_role JWT claim.
   begin
     if auth.role() = 'service_role' then
       return true;
     end if;
   exception when others then
-    -- auth schema/helper unavailable (e.g. plain psql) — fall through.
     null;
   end;
 
-  claims := current_setting('request.jwt.claims', true);
-  if claims is null or claims = '' then
-    -- No request JWT (superuser/admin/migration session) => privileged.
-    return true;
-  end if;
-
-  claim_role := (claims::jsonb) ->> 'role';
+  claim_role := (current_setting('request.jwt.claims', true)::jsonb) ->> 'role';
   return claim_role = 'service_role';
+exception when others then
+  -- If claim parsing fails for a client role, default to guarded (fail-safe).
+  return false;
 end;
 $$;
 

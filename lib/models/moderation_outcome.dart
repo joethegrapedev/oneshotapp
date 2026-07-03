@@ -6,7 +6,11 @@ enum GateStatus {
   heldSelfharm,
   heldPii,
   rejected,
-  rejectedObjectionable;
+  rejectedObjectionable,
+
+  /// Transient: the gate could not reach the moderation provider. The entry is
+  /// saved privately and NOT pooled (fail-closed); the user can retry later.
+  pending;
 
   static GateStatus fromDb(String? v) => switch (v) {
         'clean' => GateStatus.clean,
@@ -14,6 +18,8 @@ enum GateStatus {
         'held_pii' => GateStatus.heldPii,
         'rejected' => GateStatus.rejected,
         'rejected_objectionable' => GateStatus.rejectedObjectionable,
+        'pending' => GateStatus.pending,
+        // Unknown/unexpected → treat as not shareable (fail-closed).
         _ => GateStatus.rejectedObjectionable,
       };
 }
@@ -40,7 +46,8 @@ class ModerationOutcome {
     final crisis = json['crisis'] as Map<String, dynamic>?;
     final resources = (crisis?['resources'] as List?)
             ?.map(
-              (e) => CrisisResource.fromJson((e as Map).cast<String, dynamic>()),
+              (e) =>
+                  CrisisResource.fromJson((e as Map).cast<String, dynamic>()),
             )
             .toList() ??
         const <CrisisResource>[];

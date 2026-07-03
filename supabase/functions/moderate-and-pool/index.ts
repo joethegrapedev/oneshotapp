@@ -31,7 +31,7 @@ const CRISIS_SG = {
   resources: [
     {
       name: 'Samaritans of Singapore (SOS)',
-      contact: '1-767',
+      contact: '1767',
       hours: '24h',
       note: 'verify at build time',
     },

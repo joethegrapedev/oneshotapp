@@ -90,12 +90,15 @@ class _DoodlePainter extends CustomPainter {
         break;
       case Doodle.envelope:
         canvas.drawPath(
-          stroke([
-            j(0.16, 0.30),
-            j(0.84, 0.30),
-            j(0.84, 0.74),
-            j(0.16, 0.74),
-          ], close: true,),
+          stroke(
+            [
+              j(0.16, 0.30),
+              j(0.84, 0.30),
+              j(0.84, 0.74),
+              j(0.16, 0.74),
+            ],
+            close: true,
+          ),
           paint,
         );
         canvas.drawPath(
@@ -124,28 +127,34 @@ class _DoodlePainter extends CustomPainter {
         break;
       case Doodle.folder:
         canvas.drawPath(
-          stroke([
-            j(0.16, 0.34),
-            j(0.42, 0.34),
-            j(0.50, 0.42),
-            j(0.84, 0.42),
-            j(0.84, 0.74),
-            j(0.16, 0.74),
-          ], close: true,),
+          stroke(
+            [
+              j(0.16, 0.34),
+              j(0.42, 0.34),
+              j(0.50, 0.42),
+              j(0.84, 0.42),
+              j(0.84, 0.74),
+              j(0.16, 0.74),
+            ],
+            close: true,
+          ),
           paint,
         );
         break;
       case Doodle.heart:
         canvas.drawPath(
-          stroke([
-            j(0.50, 0.78),
-            j(0.20, 0.48),
-            j(0.28, 0.26),
-            j(0.50, 0.38),
-            j(0.72, 0.26),
-            j(0.80, 0.48),
-            j(0.50, 0.78),
-          ], close: true,),
+          stroke(
+            [
+              j(0.50, 0.78),
+              j(0.20, 0.48),
+              j(0.28, 0.26),
+              j(0.50, 0.38),
+              j(0.72, 0.26),
+              j(0.80, 0.48),
+              j(0.50, 0.78),
+            ],
+            close: true,
+          ),
           paint,
         );
         break;
