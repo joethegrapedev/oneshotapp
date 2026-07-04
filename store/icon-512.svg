@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Google Play high-res listing icon, 512x512. Paper ground (#FBF7F0) with the
+     One Shot mark centered. Play applies its own corner rounding, so this is a
+     full-bleed square. Regenerate PNG via store/build_store_assets.sh. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#FBF7F0" />
+  <g fill="none" stroke="#C05C3A" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150,322 C196,232 316,232 362,322" />
+  </g>
+  <circle cx="256" cy="196" r="26" fill="#C05C3A" />
+</svg>

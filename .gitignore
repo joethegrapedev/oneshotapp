@@ -80,3 +80,6 @@ Thumbs.db
 node_modules/
 scripts/node_modules/
 scripts/package-lock.json
+
+# Local run configs (contain public keys but keep out of git)
+dart_defines/

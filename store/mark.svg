@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One Shot brand mark: a single terracotta arch + dot on transparent ground.
+     Matches the Android adaptive launcher icon (ic_launcher_foreground.xml).
+     512x512 viewport; transparent for compositing onto any brand surface. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <g fill="none" stroke="#C05C3A" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150,322 C196,232 316,232 362,322" />
+  </g>
+  <circle cx="256" cy="196" r="26" fill="#C05C3A" />
+</svg>

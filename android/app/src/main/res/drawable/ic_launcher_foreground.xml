@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Placeholder foreground for the adaptive launcher icon. A single terracotta
-     "one shot" arc/dot mark centered in the 108dp adaptive canvas (inner 72dp
-     safe zone). Replace with the final designed icon before submission. -->
+<!-- Adaptive launcher foreground: the One Shot mark (terracotta arch + dot),
+     centered in the 108dp adaptive canvas (inner 72dp safe zone). Geometry is
+     the 512px store mark scaled by 108/512, so the launcher icon and the Play
+     listing icon (store/icon-512.png) are identical. Regenerate the store PNGs
+     via store/build_store_assets.sh. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- upward arc, single stroke, round caps (hand-drawn feel) -->
+    <!-- upward arch, single stroke, round caps -->
     <path
         android:strokeColor="#C05C3A"
-        android:strokeWidth="4.4"
+        android:strokeWidth="6.33"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
         android:fillColor="#00000000"
-        android:pathData="M38,66 C42,50 66,50 70,66" />
-    <!-- the single dot / mark -->
+        android:pathData="M31.64,67.92 C41.34,48.94 66.66,48.94 76.36,67.92" />
+    <!-- the single dot above the arch -->
     <path
         android:fillColor="#C05C3A"
-        android:pathData="M54,44 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
+        android:pathData="M54,41.34 m-5.48,0 a5.48,5.48 0 1,0 10.96,0 a5.48,5.48 0 1,0 -10.96,0" />
 </vector>
