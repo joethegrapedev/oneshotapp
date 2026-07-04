@@ -2,13 +2,8 @@
 
 **Last updated: 2026-07-01 · Version: 2026-07-01**
 
-> **TEMPLATE NOTICE.** This document is a good-faith template prepared for the
-> One Shot journaling app. It is **not legal advice** and **must be reviewed and
-> approved by qualified counsel** before the app is published. Bracketed
-> `[PLACEHOLDER]` values must be filled in prior to launch.
-
 These Terms of Use ("Terms") are a binding agreement between you and
-[LEGAL_ENTITY_NAME] ("One Shot", "we", "us") governing your use of the One Shot
+One Shot (an independent developer based in Singapore) ("One Shot", "we", "us") governing your use of the One Shot
 mobile application and related services (the "Service"). **These Terms are
 separate from our [Privacy Policy](./privacy-policy.md), which explains how we
 handle your data. Please read both.**
@@ -157,7 +152,7 @@ To the maximum extent permitted by law, we will not be liable for any indirect,
 incidental, special, consequential, or punitive damages, or for content created
 by other users. Our aggregate liability for any claim relating to the Service is
 limited to the amount you paid us in the twelve months before the claim, or
-[SGD amount], whichever is greater. Some jurisdictions do not allow certain
+SGD 100, whichever is greater. Some jurisdictions do not allow certain
 limitations, so some of the above may not apply to you.
 
 ---
@@ -181,7 +176,7 @@ take effect constitutes acceptance.
 
 ## 12. Governing law
 
-These Terms are governed by the laws of **Singapore** [confirm with counsel],
+These Terms are governed by the laws of **Singapore**,
 without regard to conflict-of-laws principles, and the courts of Singapore have
 jurisdiction, subject to any mandatory consumer protections in your place of
 residence.
@@ -190,6 +185,6 @@ residence.
 
 ## 13. Contact
 
-Questions about these Terms: **[SUPPORT_EMAIL]**
+Questions about these Terms: **johntowzhichongdev@gmail.com**
 
-*One Shot Terms of Use — version 2026-07-01. Template for counsel review.*
+*One Shot Terms of Use — version 2026-07-01.*

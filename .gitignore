@@ -75,3 +75,8 @@ supabase/.env
 Thumbs.db
 *.log
 *.swp
+
+# Node (legal-page generator in scripts/)
+node_modules/
+scripts/node_modules/
+scripts/package-lock.json

@@ -1,0 +1,6 @@
+{
+  "name": "oneshot-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": { "marked": "^12.0.0" }
+}

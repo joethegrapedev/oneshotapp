@@ -28,7 +28,10 @@ to my developer (see "Report back" at the bottom).
   private. No usernames, no profiles, no direct messaging, no reply channel.
 - Monetization: hard paywall, auto-renewing subscription with **weekly** and
   **yearly** options.
-- Support email: **sgscribe.ai@gmail.com**  (confirm this is the one I want public)
+- Support email: **johntowzhichongdev@gmail.com**
+- **Privacy Policy URL:** https://claude.ai/code/artifact/7398c441-773d-46c9-b57f-06f177954f63
+- **Terms of Use URL:** https://claude.ai/code/artifact/93f6bd3a-e28f-44d2-be7a-06ac8655c874
+  (both are live public pages; use them wherever a Privacy Policy or Terms URL is required)
 
 ---
 
@@ -107,8 +110,8 @@ the app line up.)
 
 Complete each section under **Policy → App content** with these answers:
 
-**Privacy policy:** enter my Privacy Policy URL. If I haven't given you a live URL
-yet, tell me — I need to host it (it's ready as a document); do not invent one.
+**Privacy policy:** enter this URL:
+`https://claude.ai/code/artifact/7398c441-773d-46c9-b57f-06f177954f63`
 
 **Ads:** No, this app does **not** contain ads.
 
@@ -118,7 +121,7 @@ box: *"The app uses anonymous sign-in (no login needed). All features are behind
 subscription paywall. Please use a Play license-test account, or contact the
 developer for a promo code, to bypass the paywall for review. The optional
 'exchange' shows one anonymous, AI-moderated entry from the shared pool."* If Play
-lets me add a license-tester email, add **sgscribe.ai@gmail.com** under
+lets me add a license-tester email, add **johntowzhichongdev@gmail.com** under
 Setup → License testing.
 
 **Content ratings (IARC questionnaire):** start it and answer:
@@ -198,7 +201,7 @@ renew automatically until cancelled; manage or cancel anytime in Google Play.
 - **App icon (512×512), Feature graphic (1024×500), phone screenshots (≥2):** I
   will provide these images — tell me this is the one thing you need assets for,
   and leave placeholders/draft saved. Do not generate fake screenshots.
-- **Contact email:** sgscribe.ai@gmail.com
+- **Contact email:** johntowzhichongdev@gmail.com
 - **Category:** Lifestyle. Tags: journal, diary, mindfulness, writing, wellbeing.
 
 ---

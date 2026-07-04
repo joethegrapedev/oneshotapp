@@ -2,12 +2,6 @@
 
 **Last updated: 2026-07-01 · Version: 2026-07-01**
 
-> **TEMPLATE NOTICE.** This is a good-faith template for the One Shot journaling
-> app. It is **not legal advice** and **must be reviewed and approved by
-> qualified counsel** before publication. Bracketed `[PLACEHOLDER]` values must
-> be completed prior to launch. This policy is kept consistent with the app's
-> Google Play **Data Safety** declaration (see `docs/data-safety.md`).
-
 This Privacy Policy explains what information the One Shot app ("One Shot", "we",
 "us") collects, why, how it is used and shared, and the choices you have. **This
 policy is separate from our [Terms of Use](./terms-of-use.md).**
@@ -61,7 +55,7 @@ routing you to crisis resources), or be rejected.
 
 - **Supabase** — our hosting/database/authentication provider (data processor).
   It stores your account, entries, reports, blocks, and moderation records on our
-  behalf. Hosting region: [SPECIFY_REGION].
+  behalf. Hosting region: Southeast Asia (Singapore).
 - **OpenAI** — moderation classification of shared-entry text only, as described
   above (data processor / service provider).
 - **RevenueCat + Google Play Billing** — subscription management and payments.
@@ -89,8 +83,8 @@ Service), **legitimate interests** (safety, abuse prevention, reliability),
 - **Shared entries** remain in the pool while eligible; removed entries and
   reported/blocked content are withdrawn from serving. We may retain minimal
   moderation records for safety and legal compliance for a limited period.
-- **Anonymous accounts** with no activity may be pruned per [RETENTION_PERIOD].
-- Backups are rotated and purged on a rolling schedule of [BACKUP_PERIOD].
+- **Anonymous accounts** with no activity may be pruned per 12 months of inactivity.
+- Backups are rotated and purged on a rolling schedule of 30 days.
 
 ---
 
@@ -120,7 +114,7 @@ strong, unique method to secure any linked email account.
 
 Your data may be processed in countries other than yours (e.g. by the service
 providers above). Where required, we use appropriate safeguards for such
-transfers. [Confirm specifics with counsel.]
+transfers. 
 
 ---
 
@@ -133,7 +127,7 @@ We may update this policy; material changes will be reflected by updating the
 
 ## 11. Contact
 
-Privacy questions or data requests: **[SUPPORT_EMAIL]**
-Data controller: [LEGAL_ENTITY_NAME], [ADDRESS].
+Privacy questions or data requests: **johntowzhichongdev@gmail.com**
+Data controller: One Shot (independent developer), Singapore.
 
-*One Shot Privacy Policy — version 2026-07-01. Template for counsel review.*
+*One Shot Privacy Policy — version 2026-07-01.*
