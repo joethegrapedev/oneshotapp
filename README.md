@@ -71,8 +71,8 @@ flutter run \
   --dart-define=SUPABASE_URL=https://xxxx.supabase.co \
   --dart-define=SUPABASE_ANON_KEY=eyJ... \
   --dart-define=REVENUECAT_ANDROID_KEY=goog_... \
-  --dart-define=TOS_URL=https://oneshot.app/terms \
-  --dart-define=PRIVACY_URL=https://oneshot.app/privacy \
+  --dart-define=TOS_URL=https://oneshot-legal.vercel.app/terms \
+  --dart-define=PRIVACY_URL=https://oneshot-legal.vercel.app/privacy \
   --dart-define=SUPPORT_EMAIL=support@oneshot.app \
   --dart-define=TOS_VERSION=2026-07-01
 ```

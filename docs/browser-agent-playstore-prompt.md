@@ -29,8 +29,8 @@ to my developer (see "Report back" at the bottom).
 - Monetization: hard paywall, auto-renewing subscription with **weekly** and
   **yearly** options.
 - Support email: **johntowzhichongdev@gmail.com**
-- **Privacy Policy URL:** https://claude.ai/code/artifact/7398c441-773d-46c9-b57f-06f177954f63
-- **Terms of Use URL:** https://claude.ai/code/artifact/93f6bd3a-e28f-44d2-be7a-06ac8655c874
+- **Privacy Policy URL:** https://oneshot-legal.vercel.app/privacy
+- **Terms of Use URL:** https://oneshot-legal.vercel.app/terms
   (both are live public pages; use them wherever a Privacy Policy or Terms URL is required)
 
 ---
@@ -111,7 +111,7 @@ the app line up.)
 Complete each section under **Policy → App content** with these answers:
 
 **Privacy policy:** enter this URL:
-`https://claude.ai/code/artifact/7398c441-773d-46c9-b57f-06f177954f63`
+`https://oneshot-legal.vercel.app/privacy`
 
 **Ads:** No, this app does **not** contain ads.
 

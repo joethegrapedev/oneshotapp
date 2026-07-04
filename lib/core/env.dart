@@ -25,13 +25,11 @@ class Env {
 
   static const String tosUrl = String.fromEnvironment(
     'TOS_URL',
-    defaultValue:
-        'https://claude.ai/code/artifact/93f6bd3a-e28f-44d2-be7a-06ac8655c874',
+    defaultValue: 'https://oneshot-legal.vercel.app/terms',
   );
   static const String privacyUrl = String.fromEnvironment(
     'PRIVACY_URL',
-    defaultValue:
-        'https://claude.ai/code/artifact/7398c441-773d-46c9-b57f-06f177954f63',
+    defaultValue: 'https://oneshot-legal.vercel.app/privacy',
   );
   static const String supportEmail = String.fromEnvironment(
     'SUPPORT_EMAIL',

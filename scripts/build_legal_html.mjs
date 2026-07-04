@@ -4,11 +4,17 @@
 //
 // Usage:  node scripts/build_legal_html.mjs
 // (requires `marked` available on the module path — see scratchpad install)
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { marked } from 'marked';
 
 const OUT = 'build/legal';
+// Ready-to-deploy static site (privacy + terms + index + vercel.json), served
+// publicly at https://oneshot-legal.vercel.app. Regenerated from committed
+// source (LEGAL/*.md + scripts/legal-site/*), so `vercel deploy --prod` from
+// SITE always ships the current docs. See scripts/deploy-legal.md.
+const SITE = 'build/legal-site';
 mkdirSync(OUT, { recursive: true });
+mkdirSync(SITE, { recursive: true });
 
 // Shared CSS for both the standalone page and the artifact partial.
 const STYLE = `<style>
@@ -108,5 +114,14 @@ for (const d of docs) {
   const body = wrapTables(marked.parse(md, { gfm: true }));
   writeFileSync(`${OUT}/${d.out}.html`, standalone(d.title, body));
   writeFileSync(`${OUT}/${d.out}.artifact.html`, partial(d.title, body));
+  // The deploy folder gets the standalone page (served at /privacy, /terms).
+  writeFileSync(`${SITE}/${d.out}.html`, standalone(d.title, body));
   console.log(`wrote ${OUT}/${d.out}.html and ${d.out}.artifact.html`);
 }
+
+// Copy the committed site chrome (landing page + hosting config) into the
+// deploy folder so `${SITE}` is a complete, ready-to-ship Vercel project.
+for (const f of ['index.html', 'vercel.json']) {
+  copyFileSync(`scripts/legal-site/${f}`, `${SITE}/${f}`);
+}
+console.log(`assembled deploy site -> ${SITE}/ (index.html, vercel.json, privacy.html, terms.html)`);

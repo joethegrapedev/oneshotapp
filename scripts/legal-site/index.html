@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Shot — Legal</title>
+<style>
+  :root{ --paper:#FBF7F0; --paper-2:#F3ECE0; --ink:#1E1B18; --ink-soft:#6B655E;
+    --accent:#C05C3A; --rule:#E4D9C8; --link:#A24A2E; }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#17140F; --paper-2:#211C15; --ink:#F1EADD; --ink-soft:#B3A895;
+      --accent:#E08A63; --rule:#332B20; --link:#E08A63; }
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.7; }
+  .top{ height:4px; background:var(--accent); }
+  .wrap{ max-width:44rem; margin:0 auto; padding:3rem 1.5rem 5rem; }
+  .name{ font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-weight:600; font-size:1.6rem; letter-spacing:.2px; }
+  .kind{ color:var(--ink-soft); font-size:.8rem; text-transform:uppercase;
+    letter-spacing:.12em; display:block; margin-top:.4rem; }
+  ul{ list-style:none; padding:0; margin:2.4rem 0 0; }
+  li{ border-bottom:1px solid var(--rule); }
+  a{ color:var(--link); text-decoration:none; display:block; padding:1.1rem .2rem;
+    font-size:1.1rem; }
+  a:hover{ color:var(--accent); }
+  .arrow{ color:var(--ink-soft); float:right; }
+  footer{ margin-top:3rem; color:var(--ink-soft); font-size:.85rem; }
+  footer a{ display:inline; padding:0; color:var(--link); text-decoration:underline; }
+</style>
+</head>
+<body>
+  <div class="top"></div>
+  <div class="wrap">
+    <span class="name">One Shot</span>
+    <span class="kind">Legal &amp; Privacy</span>
+    <ul>
+      <li><a href="/privacy">Privacy Policy <span class="arrow">&rarr;</span></a></li>
+      <li><a href="/terms">Terms of Use <span class="arrow">&rarr;</span></a></li>
+    </ul>
+    <footer>
+      Questions? <a href="mailto:johntowzhichongdev@gmail.com">johntowzhichongdev@gmail.com</a>
+    </footer>
+  </div>
+</body>
+</html>
