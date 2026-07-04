@@ -1,0 +1,94 @@
+name: Build Release AAB
+
+# Builds a signed Play Store App Bundle (.aab) in CI so you don't need the
+# Android SDK on your machine. Triggers on a version tag (v1.2.3) or manually.
+# The AAB is uploaded as a workflow artifact for you to download and upload to
+# Play Console (per policy, CI does not push the binary to Google directly).
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   DART_DEFINES_JSON        Full JSON of build-time config. Same shape as
+#                            dart_defines/prod.json — see docs/deployment.md.
+#                            Must include SUPABASE_URL, SUPABASE_ANON_KEY,
+#                            REVENUECAT_ANDROID_KEY, TOS_URL, PRIVACY_URL,
+#                            SUPPORT_EMAIL, TOS_VERSION (POSTHOG_* optional).
+#   ANDROID_KEYSTORE_BASE64  base64 of your upload-keystore.jks
+#                            (`base64 -i upload-keystore.jks | pbcopy`)
+#   ANDROID_KEYSTORE_PASSWORD  store password
+#   ANDROID_KEY_ALIAS          key alias (e.g. upload)
+#   ANDROID_KEY_PASSWORD       key password
+#
+# Without the keystore secrets the build still runs but falls back to DEBUG
+# signing (per android/app/build.gradle) — NOT accepted by Play. Supply the
+# secrets for a real uploadable release.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  build-aab:
+    name: Build signed AAB
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.5
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Write build-time config
+        env:
+          DART_DEFINES_JSON: ${{ secrets.DART_DEFINES_JSON }}
+        run: |
+          if [ -z "$DART_DEFINES_JSON" ]; then
+            echo "::error::DART_DEFINES_JSON secret is not set."
+            exit 1
+          fi
+          mkdir -p dart_defines
+          printf '%s' "$DART_DEFINES_JSON" > dart_defines/prod.json
+          # Validate it is real JSON before we hand it to the build.
+          python3 -c "import json,sys; json.load(open('dart_defines/prod.json'))"
+
+      - name: Configure upload signing
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ]; then
+            echo "::warning::No keystore secret — build will use DEBUG signing (not uploadable to Play)."
+            exit 0
+          fi
+          echo "$KEYSTORE_B64" | base64 --decode > "$GITHUB_WORKSPACE/android/app/upload-keystore.jks"
+          cat > "$GITHUB_WORKSPACE/android/key.properties" <<EOF
+          storeFile=$GITHUB_WORKSPACE/android/app/upload-keystore.jks
+          storePassword=$STORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          EOF
+
+      - name: Build App Bundle
+        run: flutter build appbundle --release --dart-define-from-file=dart_defines/prod.json
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab
+          path: build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
+          retention-days: 14
