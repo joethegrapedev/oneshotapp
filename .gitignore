@@ -86,3 +86,8 @@ dart_defines/
 
 # Local upload-key credentials (never commit)
 android/UPLOAD_KEYSTORE_CREDENTIALS.txt
+
+# Built artifacts (AAB/APK) — never commit
+dist/
+*.aab
+*.apk
