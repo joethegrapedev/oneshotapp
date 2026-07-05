@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/providers.dart';
 import '../../core/theme.dart';
+import '../../models/entry.dart';
 import '../../models/moderation_outcome.dart';
 import '../../widgets/hand_button.dart';
 import '../../widgets/paper_scaffold.dart';
@@ -22,6 +23,10 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
   final TextEditingController _controller = TextEditingController();
   bool _savingPrivate = false;
   bool _sharing = false;
+
+  /// The `shared`/`pending` row staged by an in-flight share attempt. Reused
+  /// across retries so a failed gate call never leaves duplicate entries.
+  Entry? _staged;
 
   bool get _busy => _savingPrivate || _sharing;
   bool get _hasText => _controller.text.trim().isNotEmpty;
@@ -66,23 +71,61 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
       if (!proceed) return;
 
       // b. Stage the entry for sharing (visibility=shared, status=pending).
-      final entry = await ref
-          .read(entriesRepositoryProvider)
-          .saveDraft(body: text, private: false);
+      //    Reuses the row from a prior attempt instead of inserting a new one,
+      //    so retrying after a failed gate call cannot create duplicates.
+      final entry = await _stageForSharing(text);
       if (!mounted) return;
 
-      // c. Authoritative server gate.
-      final outcome = await ref
-          .read(moderationRepositoryProvider)
-          .submitForSharing(entry.id);
+      // c. Authoritative server gate. A transport failure is surfaced as a
+      //    transient `pending` outcome (fail-closed) rather than thrown, so the
+      //    user gets a clear "try again later" path — and the staged row is
+      //    reused on retry, never duplicated.
+      final outcome = await _runGate(entry.id);
       if (!mounted) return;
 
       // d. Branch on the gate's decision.
       await _handleOutcome(outcome);
     } catch (_) {
-      _snack('Could not share right now. Please try again.');
+      // Only staging (the DB insert/update) can reach here now.
+      _snack('Could not save right now. Please try again.');
     } finally {
       if (mounted) setState(() => _sharing = false);
+    }
+  }
+
+  /// Stages the entry for sharing exactly once. On the first attempt this
+  /// inserts a `shared`/`pending` row; on later attempts it reuses that same
+  /// row (refreshing the body if the user edited it) so a failed gate call can
+  /// be retried without leaving orphaned duplicate entries.
+  Future<Entry> _stageForSharing(String text) async {
+    final repo = ref.read(entriesRepositoryProvider);
+    final existing = _staged;
+    if (existing != null) {
+      if (existing.body != text) {
+        await repo.updateBody(existing.id, text);
+        _staged = existing.copyWith(body: text);
+      }
+      return _staged!;
+    }
+    final entry = await repo.saveDraft(body: text, private: false);
+    _staged = entry;
+    return entry;
+  }
+
+  /// Runs the authoritative server gate. A thrown transport/edge failure is
+  /// mapped to a transient `pending` outcome (fail-closed): the entry stays
+  /// staged (shared + pending, not poolable) and the user can retry later.
+  Future<ModerationOutcome> _runGate(String entryId) async {
+    try {
+      return await ref
+          .read(moderationRepositoryProvider)
+          .submitForSharing(entryId);
+    } catch (_) {
+      return const ModerationOutcome(
+        status: GateStatus.pending,
+        isShareable: false,
+        message: '',
+      );
     }
   }
 
