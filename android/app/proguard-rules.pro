@@ -44,5 +44,12 @@
 # -keep class com.google.mlkit.genai.** { *; }
 # -dontwarn com.google.mlkit.genai.**
 
+# ---- Play Core (Flutter deferred components — NOT used by this app) --------
+# Flutter's embedding references com.google.android.play.core.* for deferred
+# component / split-install support. This app ships no deferred components and
+# does not depend on Play Core, so those classes are absent at R8 time. Tell R8
+# not to fail on the missing references (matches Flutter's own missing_rules.txt).
+-dontwarn com.google.android.play.core.**
+
 # Keep annotations / generic signatures for reflection-friendly libraries.
 -keepattributes *Annotation*, Signature, InnerClasses, EnclosingMethod
