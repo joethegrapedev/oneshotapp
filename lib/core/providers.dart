@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show kReleaseMode;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -12,6 +13,7 @@ import '../services/analytics_service.dart';
 import '../services/precheck/android_genai_precheck.dart';
 import '../services/precheck/on_device_precheck.dart';
 import '../services/precheck/precheck_stub.dart';
+import '../services/dev_purchases_service.dart';
 import '../services/purchases_service.dart';
 import 'app_session.dart';
 import 'env.dart';
@@ -44,8 +46,15 @@ final poolRepositoryProvider = Provider<PoolRepository>(
 
 // ---- Services -------------------------------------------------------------
 
-final purchasesServiceProvider =
-    Provider<PurchasesService>((ref) => RevenueCatPurchasesService());
+final purchasesServiceProvider = Provider<PurchasesService>((ref) {
+  // DEV-ONLY paywall bypass: only ever active in a non-release build with the
+  // git-ignored --dart-define=DEV_FORCE_ENTITLED=true. Release builds always
+  // use the real RevenueCat service.
+  if (!kReleaseMode && Env.devForceEntitled) {
+    return DevEntitledPurchasesService();
+  }
+  return RevenueCatPurchasesService();
+});
 
 final analyticsServiceProvider = Provider<AnalyticsService>(
   (ref) =>

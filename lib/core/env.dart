@@ -41,6 +41,13 @@ class Env {
   /// The RevenueCat entitlement identifier that unlocks the app.
   static const String entitlementId = 'pro';
 
+  /// DEV-ONLY: when true, treats the user as fully entitled so the paywall is
+  /// skipped during local runs. Never ships: it is passed via a git-ignored
+  /// `--dart-define` and is additionally ignored in release builds (see
+  /// `purchasesServiceProvider`). Defaults to false.
+  static const bool devForceEntitled =
+      bool.fromEnvironment('DEV_FORCE_ENTITLED', defaultValue: false);
+
   static bool get isSupabaseConfigured =>
       supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty;
   static bool get isPosthogConfigured => posthogKey.isNotEmpty;
