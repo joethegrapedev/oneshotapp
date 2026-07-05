@@ -83,3 +83,6 @@ scripts/package-lock.json
 
 # Local run configs (contain public keys but keep out of git)
 dart_defines/
+
+# Local upload-key credentials (never commit)
+android/UPLOAD_KEYSTORE_CREDENTIALS.txt
