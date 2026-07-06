@@ -107,6 +107,7 @@ const wrapTables = (html) =>
 const docs = [
   { src: 'LEGAL/privacy-policy.md', out: 'privacy', title: 'Privacy Policy' },
   { src: 'LEGAL/terms-of-use.md', out: 'terms', title: 'Terms of Use' },
+  { src: 'LEGAL/delete-account.md', out: 'delete-account', title: 'Delete Your Account & Data' },
 ];
 
 for (const d of docs) {
